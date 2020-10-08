@@ -17,7 +17,7 @@ public class LambdaExecute implements RequestHandler<S3EventNotification, String
 	@Override
 	public String handleRequest(S3EventNotification s3EventNotification, Context context) {
 		log.info("Lambda function is invoked:" + s3EventNotification.toJson());
-		
+		String key=s3EventNotification.getRecords().get(0).getS3().getObject().getKey();
 		log.info(key);
 		
 		App.copyFile(key);
